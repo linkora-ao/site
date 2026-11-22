@@ -1,0 +1,31 @@
+services:
+  db:
+    tty: true
+    ports:
+      - "127.0.0.1:${DATABASE_PORT}:3306"
+
+  phpmyadmin:
+    image: phpmyadmin:5.2.3
+    restart: unless-stopped
+    container_name: linkora_ao_phpmyadmin
+    environment:
+      - PMA_HOST=db
+      - PMA_PORT=${DATABASE_PORT}
+    ports:
+      - "127.0.0.1:${DATABASE_ADMIN_PORT:-8080}:80"
+    depends_on:
+      - db
+    networks:
+      - linkora_ao_network
+
+  proxy:
+    volumes:
+      - ./docker/nginx/letsencrypt:/etc/letsencrypt:ro
+
+  backend:
+    env_file:
+      - .env.development
+
+  client:
+    env_file:
+      - .env.development

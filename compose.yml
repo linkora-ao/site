@@ -1,0 +1,108 @@
+name: site_linkora
+
+services:
+  db:
+    image: mysql:8.4
+    restart: unless-stopped
+    container_name: linkora_ao_db
+    environment:
+      - MYSQL_DATABASE=${DATABASE_NAME:-linkora_ao}
+      - MYSQL_USER=${DATABASE_USERNAME:-admin}
+      - MYSQL_PASSWORD=${DATABASE_PASSWORD:?Defina DATABASE_PASSWORD no .env}
+      - MYSQL_ROOT_PASSWORD=${DATABASE_ROOT_PASSWORD:?Defina DATABASE_ROOT_PASSWORD no .env}
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "mysqladmin ping -h 127.0.0.1 -uroot -p$$MYSQL_ROOT_PASSWORD --silent",
+        ]
+      interval: 15s
+      timeout: 10s
+      retries: 15
+      start_period: 180s
+    networks:
+      - linkora_ao_network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    profiles:
+      - backend
+    container_name: backend
+    restart: unless-stopped
+    env_file: .env
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - linkora_ao_network
+    volumes:
+      - backend_data:/opt/app/public/uploads
+
+  client:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_APP_NAME: ${VITE_APP_NAME}
+        VITE_API_TOKEN: ${VITE_API_TOKEN}
+        VITE_API_BASE_URL: ${VITE_API_BASE_URL}
+        VITE_APP_DESCRIPTION: ${VITE_APP_DESCRIPTION}
+        VITE_API_TOKEN_FORM_WRITE_ACCESS: ${VITE_API_TOKEN_FORM_WRITE_ACCESS}
+    profiles:
+      - client
+    container_name: linkora_ao_client
+    restart: unless-stopped
+    env_file: .env
+    depends_on:
+      backend:
+        condition: service_started
+    networks:
+      - linkora_ao_network
+
+  proxy:
+    image: nginx:1.27-alpine
+    container_name: linkora_ao_nginx
+    restart: unless-stopped
+    profiles:
+      - proxy
+    ports:
+      - "${PROXY_PORT:-8080}:80"
+      # - "443:443"
+    volumes:
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d:ro
+    depends_on:
+      - client
+      - backend
+    networks:
+      - linkora_ao_network
+
+  poste:
+    image: analogic/poste.io:2.5.11
+    container_name: poste
+    restart: unless-stopped
+    hostname: mail.linkora.ao
+    environment:
+      - HTTPS=OFF
+      - TZ=Africa/Luanda
+      - DISABLE_CLAMAV=TRUE
+      - DISABLE_RSPAMD=TRUE
+      - HTTP_PORT=8025
+    networks:
+      - linkora_ao_network
+    profiles:
+      - poste
+    volumes:
+      - poste_data:/data
+
+volumes:
+  db_data:
+  poste_data:
+  backend_data:
+
+networks:
+  linkora_ao_network:
