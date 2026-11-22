@@ -1,0 +1,84 @@
+@import "tailwindcss";
+@import "./styles/fonts.css";
+@import "./styles/variables.css";
+@import "./styles/utilities.css";
+@import "./styles/animations.css";
+
+/*
+ * Ponte tokens -> Tailwind. `inline` faz as classes lerem o valor de :root
+ * em tempo de execução, sem duplicar cores.
+ */
+@theme inline {
+  --color-background: var(--background);
+  --color-background-alt: var(--background-alt);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-soft: var(--primary-soft);
+  --color-primary-strong: var(--primary-strong);
+  --color-primary-deep: var(--primary-deep);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent-light: var(--accent-light);
+  --color-accent-dark: var(--accent-dark);
+
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted-on-primary: var(--muted-on-primary);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-border-on-primary: var(--border-on-primary);
+
+  --color-destructive: var(--destructive);
+  --color-success: var(--success);
+  --color-ring: var(--ring);
+
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius);
+  --radius-lg: var(--radius-lg);
+  --radius-pill: var(--radius-pill);
+
+  --shadow-card: var(--shadow-card);
+  --shadow-menu: var(--shadow-menu);
+  --shadow-edge: var(--shadow-edge);
+  --shadow-edge-hover: var(--shadow-edge-hover);
+}
+
+/* A navegação completa aparece acima de 1100px; abaixo disso há menu hamburger. */
+@theme {
+  --breakpoint-nav: 68.8125rem;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    overflow-x: clip;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  section[id] {
+    scroll-margin-top: 80px;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--accent-foreground);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}

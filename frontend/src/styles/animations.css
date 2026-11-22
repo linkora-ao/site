@@ -1,0 +1,17 @@
+/* Keyframes das paginas (scroll-driven). Gerado a partir do desenho. */
+@keyframes lk-p1{from{transform:translateY(36px)}to{transform:translateY(-28px)}}
+@keyframes lk-p2{from{transform:translateY(84px)}to{transform:translateY(-12px)}}
+@keyframes lk-p3{from{transform:translateY(20px)}to{transform:translateY(-60px)}}
+@keyframes lk-pm{from{transform:translateY(48px)}to{transform:translateY(-16px)}}
+@keyframes lk-fill{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+@keyframes lk-node{from{background:var(--background);color:var(--primary);border-color:#BDB19B}to{background:var(--primary);color:var(--background);border-color:var(--primary)}}
+@keyframes lk-dim{from{opacity:.3}to{opacity:1}}
+@keyframes lk-bury{to{transform:scale(.95);filter:brightness(.78)}}
+@keyframes lk-rv{from{opacity:.2;transform:translateY(34px)}to{opacity:1;transform:none}}
+@keyframes lk-art{from{opacity:.3;transform:scale(.9)}to{opacity:1;transform:none}}
+@keyframes lk-act{from{color:#A59A84}to{color:var(--primary)}}
+@keyframes lk-phf{0%,65%{opacity:1;transform:none}85%,100%{opacity:0;transform:translateY(-28px)}}
+@keyframes lk-phm{0%,15%{opacity:0;transform:translateY(28px)}35%,65%{opacity:1;transform:none}85%,100%{opacity:0;transform:translateY(-28px)}}
+@keyframes lk-phl{0%,15%{opacity:0;transform:translateY(28px)}35%,100%{opacity:1;transform:none}}
+@keyframes lk-fillx{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes lk-fl{from{transform:translateY(30px)}to{transform:translateY(-34px)}}

@@ -1,0 +1,13 @@
+/*
+ * Fontes (Fontsource, variáveis, servidas a partir do próprio site).
+ * Para trocar uma fonte: mudar o pacote aqui e o nome em --font-* abaixo.
+ */
+@import "@fontsource-variable/schibsted-grotesk";
+@import "@fontsource-variable/instrument-sans";
+@import "@fontsource-variable/jetbrains-mono";
+
+@theme {
+  --font-display: "Schibsted Grotesk Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Instrument Sans Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, "SF Mono", Menlo, monospace;
+}
