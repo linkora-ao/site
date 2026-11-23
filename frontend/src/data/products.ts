@@ -10,7 +10,8 @@ export const PRODUCTS = [
     number: "01",
     name: "BOVE",
     status: "Disponível em piloto",
-    summary: "Plataforma multitenant para centros de formação e instituições de ensino.",
+    summary:
+      "Plataforma multitenant para centros de formação e instituições de ensino.",
     to: "/bove",
     cta: "Conhecer BOVE",
   },
@@ -29,5 +30,5 @@ export type Product = (typeof PRODUCTS)[number];
 export const UPCOMING_PRODUCT = {
   number: "02",
   title: "Em preparação",
-  summary: "Espaço reservado para o próximo produto da Linkora.",
+  summary: "Quando o produto estiver em piloto, você verá ele aqui.",
 } as const;
