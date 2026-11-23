@@ -19,14 +19,15 @@ export function StorySection() {
             <p className="body reveal mt-[28px] text-[19px]">
               Em demasiados projectos, o software é entregue e esquecido.
               Funciona na apresentação, falha quando o negócio cresce e ninguém
-              responde quando é preciso. Decidimos fazer ao contrário: poucos
-              projectos, bem feitos, e acompanhados depois do lançamento.
+              responde quando é preciso.
             </p>
-            <p className="body reveal mt-[22px] text-[19px]">
-              Começámos pequenos, de propósito. Hoje a equipa é um fundador que
-              programa, o que significa que falas sempre com quem escreve o
-              código. O nosso primeiro produto próprio, a BOVE, nasceu desta
-              mesma exigência.
+            <p className="body reveal mt-[28px] text-[19px]">
+              Nós fazemos de forma diferente. Faseamos cada projecto e
+              inserimos-o num ciclo contínuo de verificação, antes, durante e
+              depois do lançamento. Acompanhamos a evolução real do software no
+              negócio, ajustamos o que for necessário e garantimos que continua
+              a responder quando o volume, a complexidade ou as necessidades
+              mudam.
             </p>
             <div className="reveal flex flex-wrap gap-[10px] mt-[32px] text-primary">
               <span className="chip">poucos projectos</span>
