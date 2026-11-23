@@ -6,7 +6,9 @@ export const Route = createFileRoute("/bove")({
   head: () =>
     seo({
       title: "BOVE",
-      description: "Plataforma de gestão para centros de formação e instituições de ensino.",
+      path: "/bove",
+      description:
+        "Plataforma de gestão para centros de formação e instituições de ensino.",
     }),
   component: BovePage,
 });

@@ -9,7 +9,12 @@ export const Route = createFileRoute("/servicos/$slug")({
     if (!service) throw notFound();
     return service;
   },
-  head: ({ loaderData }) => seo({ title: loaderData?.title, description: loaderData?.summary }),
+  head: ({ loaderData, params }) =>
+    seo({
+      title: loaderData?.title,
+      description: loaderData?.summary,
+      path: `/servicos/${params.slug}`,
+    }),
   component: ServiceRoute,
 });
 

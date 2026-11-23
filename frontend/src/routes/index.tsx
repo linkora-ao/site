@@ -4,6 +4,7 @@ import { SITE } from "@data/site";
 import { seo } from "@lib/seo";
 
 export const Route = createFileRoute("/")({
-  head: () => seo({ title: SITE.tagline, description: SITE.description }),
+  head: () =>
+    seo({ title: SITE.tagline, description: SITE.description, path: "/" }),
   component: HomePage,
 });

@@ -12,7 +12,7 @@ export const SITE = {
   shortName: "Linkora",
   tagline:
     env.VITE_APP_DESCRIPTION ?? "Software à medida para empresas angolanas.",
-  url: env.VITE_APP_URL,
+  url: (env.VITE_APP_URL ?? "https://www.linkora.ao").replace(/\/$/, ""),
   locale: "pt-AO",
   email: "geral@linkora.ao",
   phone: "+244 949 614 129",
@@ -24,9 +24,10 @@ export const SITE = {
   country: "Angola",
   description:
     "Empresa angolana de tecnologia. Plataformas, software à medida e automações para PMEs.",
+  ogImage: "/og-image.png",
   hours: "Seg a Sex, 08h às 17h",
   legal: {
-    name: "Linkora Angola - Soluções Digitais, Lda.", // TODO
+    name: "Linkora Angola - Soluções Digitais, Lda.",
     nif: "[NIF]", // TODO
     address: "[Morada]", // TODO
   },
@@ -53,17 +54,17 @@ export const SOCIALS: readonly { id: SocialId; label: string; href: string }[] =
     {
       id: "linkedin",
       label: "LinkedIn",
-      href: "https://linkedin.com/company/linkora",
+      href: "https://linkedin.com/company/linkora-ao",
     },
     {
       id: "facebook",
       label: "Facebook",
-      href: "https://facebook.com/linkora",
+      href: "https://facebook.com/linkora-ao",
     },
     {
       id: "instagram",
       label: "Instagram",
-      href: "https://instagram.com/linkora",
+      href: "https://instagram.com/linkora-ao",
     },
     {
       id: "whatsapp",
@@ -73,6 +74,6 @@ export const SOCIALS: readonly { id: SocialId; label: string; href: string }[] =
     {
       id: "github",
       label: "GitHub",
-      href: "https://github.com/linkora",
+      href: "https://github.com/linkora-ao",
     },
   ];
