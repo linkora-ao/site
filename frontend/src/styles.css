@@ -2,7 +2,6 @@
 @import "./styles/fonts.css";
 @import "./styles/variables.css";
 @import "./styles/utilities.css";
-@import "./styles/animations.css";
 
 /*
  * Ponte tokens -> Tailwind. `inline` faz as classes lerem o valor de :root
@@ -17,14 +16,10 @@
 
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
-  --color-primary-soft: var(--primary-soft);
-  --color-primary-strong: var(--primary-strong);
-  --color-primary-deep: var(--primary-deep);
 
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
-  --color-accent-light: var(--accent-light);
-  --color-accent-dark: var(--accent-dark);
+  --color-accent-strong: var(--accent-strong);
 
   --color-muted-foreground: var(--muted-foreground);
   --color-muted-on-primary: var(--muted-on-primary);
@@ -35,21 +30,11 @@
   --color-destructive: var(--destructive);
   --color-success: var(--success);
   --color-ring: var(--ring);
-
-  --radius-sm: var(--radius-sm);
-  --radius-md: var(--radius);
-  --radius-lg: var(--radius-lg);
-  --radius-pill: var(--radius-pill);
-
-  --shadow-card: var(--shadow-card);
-  --shadow-menu: var(--shadow-menu);
-  --shadow-edge: var(--shadow-edge);
-  --shadow-edge-hover: var(--shadow-edge-hover);
 }
 
-/* A navegação completa aparece acima de 1100px; abaixo disso há menu hamburger. */
+/* A navegação completa aparece acima de 1000px; abaixo disso há menu hamburger. */
 @theme {
-  --breakpoint-nav: 68.8125rem;
+  --breakpoint-nav: 62.5rem;
 }
 
 @layer base {
@@ -68,7 +53,7 @@
   }
 
   section[id] {
-    scroll-margin-top: 80px;
+    scroll-margin-top: 88px;
   }
 
   ::selection {

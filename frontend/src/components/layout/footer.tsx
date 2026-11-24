@@ -1,92 +1,33 @@
 import { Link } from "@tanstack/react-router";
 import { Logo } from "@components/atoms/logo";
-import {
-  FooterColumn,
-  footerLinkClass,
-} from "@components/molecules/footer-column";
-import { SocialLinks } from "@components/molecules/social-links";
-import { COMPANY_LINKS, FOOTER_PRODUCT_LINKS } from "@data/navigation";
-import { SERVICES } from "@data/services";
-import { SITE } from "@data/site";
+import { LEGAL_LINKS, SITE } from "@data/site";
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-primary-deep text-primary-foreground">
-      <div className="container pt-22">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr_1fr_1.2fr]">
-          <div>
-            <Logo variant="footer" />
-            <p className="mt-[18px] max-w-[300px] text-[15px] leading-[1.65] text-muted-on-primary">
-              {SITE.description}
-            </p>
-            <div className="mt-[26px]">
-              <SocialLinks />
-            </div>
-          </div>
-
-          <FooterColumn title="Serviços">
-            {SERVICES.map((service) => (
-              <li key={service.slug}>
-                <Link
-                  to="/servicos/$slug"
-                  params={{ slug: service.slug }}
-                  className={footerLinkClass}
-                >
-                  {service.title}
-                </Link>
-              </li>
-            ))}
-          </FooterColumn>
-
-          <FooterColumn title="Produtos">
-            {FOOTER_PRODUCT_LINKS.map((link) => (
-              <li key={link.label}>
-                <Link to={link.to} hash={link.hash} className={footerLinkClass}>
+    <footer className="border-t border-border-on-primary bg-primary pt-16 pb-8 text-primary-foreground">
+      <div className="container">
+        <div className="grid gap-8 md:grid-cols-[200px_minmax(0,1fr)_auto] md:gap-14">
+          <Link to="/" aria-label={`${SITE.name}, início`} className="focus-ring w-fit">
+            <Logo />
+          </Link>
+          <p className="max-w-[52ch] text-sm leading-[1.75] text-muted-on-primary">{SITE.about}</p>
+          <ul className="grid gap-2.5 text-sm">
+            {LEGAL_LINKS.map((link) => (
+              <li key={link.to}>
+                <Link to={link.to} className="focus-ring transition-colors hover:text-muted-on-primary">
                   {link.label}
                 </Link>
               </li>
             ))}
-          </FooterColumn>
-
-          <FooterColumn title="Empresa">
-            {COMPANY_LINKS.map((link) => (
-              <li key={link.label}>
-                <Link to={link.to} hash={link.hash} className={footerLinkClass}>
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </FooterColumn>
-
-          <div>
-            <p className="text-sm font-bold text-accent">Contacto</p>
-            <ul className="mt-[18px] grid gap-3 font-mono text-[13.5px]">
-              <li>{SITE.phone}</li>
-              <li>{SITE.email}</li>
-              <li>{SITE.address}</li>
-              <li className="text-muted-on-primary">{SITE.hours}</li>
-            </ul>
-          </div>
+          </ul>
         </div>
 
-        <div className="mt-16 flex flex-wrap justify-between gap-x-7 gap-y-2.5 border-t border-border-on-primary pt-[22px] font-mono text-xs text-muted-on-primary">
+        <div className="mt-14 flex flex-wrap justify-between gap-x-6 gap-y-2 border-t border-border-on-primary pt-6 text-[13px] text-muted-on-primary">
           <span>
-            {/* TODO: remove comment when have this informations */}
-            {/* {SITE.legal.name} · NIF {SITE.legal.nif} · {SITE.legal.address} */}
-            {SITE.legal.name}
+            © {new Date().getFullYear()} {SITE.legalName}
           </span>
-          <span>
-            © {new Date().getFullYear()} {SITE.name}. Todos os direitos
-            reservados.
-          </span>
+          <span>{SITE.madeIn}</span>
         </div>
-      </div>
-
-      <div
-        aria-hidden="true"
-        className="tracking-wider mt-10 h-[0.787em] select-none overflow-hidden text-center font-display text-[clamp(4.5rem,23vw,18.75rem)] leading-[.78] font-bold tracking-[-0.065em] whitespace-nowrap text-primary-foreground"
-      >
-        linkora<span className="text-accent">.</span>
       </div>
     </footer>
   );

@@ -7,11 +7,12 @@ export function NotFound() {
   return (
     <Section>
       <SectionHeading
+        as="h1"
         eyebrow="Erro 404"
         title="Página não encontrada"
         description="O endereço que abriu não existe ou mudou de sítio."
       />
-      <Link to="/" className={`${buttonVariants({ variant: "navy" })} mt-8`}>
+      <Link to="/" className={`${buttonVariants({ variant: "dark" })} mt-10`}>
         Voltar ao início
       </Link>
     </Section>

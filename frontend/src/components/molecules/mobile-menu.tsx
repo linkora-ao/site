@@ -1,77 +1,51 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Icon } from "@components/atoms/icon";
-import { NAV_LINKS } from "@data/navigation";
-import { SERVICES } from "@data/services";
+import { NAV } from "@data/navigation";
 
-const row =
-  "block border-b border-border-on-primary py-3.5 text-[17px] font-semibold text-primary-foreground";
-const sub = "block py-2.5 pl-4 text-[15.5px] font-medium text-muted-on-primary";
-const group = "mono-label pt-4 pb-1 text-accent";
-
-/** Menu hamburger (abaixo de 1100px). Fecha ao escolher um link ou com Escape. */
+/** Menu hamburger (abaixo de 1000px). Fecha ao escolher um link, com Escape ou ao clicar fora. */
 export function MobileMenu() {
   const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const closeOutside = (event: PointerEvent) => {
+      if (!ref.current?.contains(event.target as Node)) setOpen(false);
+    };
+    document.addEventListener("pointerdown", closeOutside);
+    return () => document.removeEventListener("pointerdown", closeOutside);
+  }, [open]);
 
   return (
-    <div
-      className="nav:hidden"
-      onKeyDown={(event) => event.key === "Escape" && setOpen(false)}
-    >
+    <div ref={ref} className="nav:hidden" onKeyDown={(event) => event.key === "Escape" && setOpen(false)}>
       <button
         type="button"
         aria-label={open ? "Fechar menu" : "Abrir menu"}
         aria-expanded={open}
         aria-controls="menu-mobile"
         onClick={() => setOpen((value) => !value)}
-        className="focus-ring flex-center size-11 cursor-pointer rounded-sm border-[1.5px] border-muted-foreground text-primary-foreground"
+        className="focus-ring flex-center size-11 cursor-pointer text-foreground"
       >
-        <Icon name={open ? "x" : "menu"} size={22} />
+        <Icon name={open ? "x" : "menu"} size={24} />
       </button>
 
       {open && (
         <nav
           id="menu-mobile"
           aria-label="Menu"
-          onClick={(event) =>
-            (event.target as HTMLElement).closest("a") && setOpen(false)
-          }
-          className="absolute inset-x-0 top-full max-h-[calc(100dvh-5rem)] overflow-auto border-t border-b-[3px] border-t-border-on-primary border-b-accent bg-primary px-5 pt-2 pb-[22px] shadow-menu"
+          onClick={(event) => (event.target as HTMLElement).closest("a") && setOpen(false)}
+          className="absolute inset-x-0 top-full max-h-[calc(100dvh-4rem)] overflow-auto border-b border-border bg-background px-5 pt-2 pb-6"
         >
-          {/* <p className={group}>Linkora</p> */}
-          {NAV_LINKS.map((item) => (
+          {NAV.map((item) => (
             <Link
-              key={item.label}
+              key={item.to}
               to={item.to}
-              hash={item.hash}
-              className={row}
+              className="block border-b border-border py-4 text-lg font-medium text-foreground"
             >
               {item.label}
             </Link>
           ))}
-
-          <p className={group}>Serviços</p>
-          {SERVICES.map((service) => (
-            <Link
-              key={service.slug}
-              to="/servicos/$slug"
-              params={{ slug: service.slug }}
-              className={sub}
-            >
-              {service.title}
-            </Link>
-          ))}
-          <Link to="/servicos" className={row}>
-            Ver todos os serviços
-          </Link>
-
-          <p className={group}>Produtos</p>
-          <Link to="/bove" className={sub}>
-            BOVE
-          </Link>
-          <Link to="/produtos" className={row}>
-            Ver todos os produtos
-          </Link>
         </nav>
       )}
     </div>

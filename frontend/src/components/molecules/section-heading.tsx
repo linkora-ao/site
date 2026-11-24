@@ -5,21 +5,25 @@ type SectionHeadingProps = {
   eyebrow?: string;
   title: ReactNode;
   description?: ReactNode;
-  /** Sobre fundos navy. */
+  /** Sobre fundos pretos. */
   onPrimary?: boolean;
+  /** h1 em vez de h2 (título principal das páginas interiores). */
+  as?: "h1" | "h2";
   className?: string;
 };
 
 /** Etiqueta + título + descrição. Cabeçalho padrão de todas as secções. */
-export function SectionHeading({ eyebrow, title, description, onPrimary, className }: SectionHeadingProps) {
+export function SectionHeading({ eyebrow, title, description, onPrimary, as: Tag = "h2", className }: SectionHeadingProps) {
   return (
-    <header className={cn("max-w-2xl", className)}>
-      {eyebrow && <p className={cn("eyebrow mb-4", onPrimary ? "text-accent" : "text-accent-dark")}>{eyebrow}</p>}
-      <h2 className="display text-3xl sm:text-4xl lg:text-5xl">{title}</h2>
+    <header className={cn("grid gap-5", className)}>
+      {eyebrow && (
+        <p className={cn("eyebrow", onPrimary ? "text-muted-on-primary" : "text-muted-foreground")}>{eyebrow}</p>
+      )}
+      <Tag className={cn("display max-w-[22ch]")}>{title}</Tag>
       {description && (
         <p
           className={cn(
-            "text-pretty-p mt-5 text-base leading-relaxed sm:text-lg",
+            "text-pretty-p max-w-[56ch] text-base leading-[1.65] sm:text-lg",
             onPrimary ? "text-muted-on-primary" : "text-muted-foreground",
           )}
         >

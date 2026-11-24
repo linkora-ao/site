@@ -7,11 +7,10 @@ const sectionVariants = cva("section-y", {
   variants: {
     tone: {
       default: "bg-background text-foreground",
+      /** Branco quente: contraste suave. */
       alt: "bg-background-alt text-foreground",
-      card: "bg-card text-card-foreground",
-      /** Secção navy de autoridade. */
+      /** Preto: secções de autoridade (serviços, contacto, rodapé). */
       primary: "bg-primary text-primary-foreground",
-      deep: "bg-primary-deep text-primary-foreground",
     },
   },
   defaultVariants: { tone: "default" },

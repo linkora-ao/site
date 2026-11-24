@@ -1,24 +1,30 @@
 import { useId, type ComponentProps, type ReactNode } from "react";
 import { cn } from "@lib/cn";
 
+/** Aspecto único de input, textarea e select. */
+const controlClass =
+  "w-full border border-border-strong bg-card px-3.5 py-3 text-base font-normal text-card-foreground " +
+  "placeholder:text-muted-foreground focus:border-foreground focus-visible:outline-2 focus-visible:outline-ring " +
+  "aria-[invalid=true]:border-destructive";
+
 type FieldShellProps = {
   id: string;
   label: string;
-  required?: boolean;
+  optional?: boolean;
   error?: string;
   children: ReactNode;
 };
 
 /** Rótulo + controlo + mensagem de erro. Base de FormInput, FormTextarea e FormSelect. */
-function FieldShell({ id, label, required, error, children }: FieldShellProps) {
+function FieldShell({ id, label, optional, error, children }: FieldShellProps) {
   return (
-    <div>
-      <label className="lbl" htmlFor={id}>
-        {label} {required && <span className="text-accent-dark">*</span>}
+    <div className="grid gap-2">
+      <label className="text-sm font-medium" htmlFor={id}>
+        {label} {optional && <span className="font-normal text-muted-foreground">(opcional)</span>}
       </label>
       {children}
       {error && (
-        <p id={`${id}-erro`} className="mt-[6px] text-[13.5px] text-destructive" role="alert">
+        <p id={`${id}-erro`} className="text-[13.5px] font-medium text-destructive" role="alert">
           {error}
         </p>
       )}
@@ -26,16 +32,16 @@ function FieldShell({ id, label, required, error, children }: FieldShellProps) {
   );
 }
 
-type Shared = { label: string; error?: string };
+type Shared = { label: string; error?: string; optional?: boolean };
 
 /** Campo de texto. Uso: <FormInput label="Nome" error={errors.name?.message} {...register("name")} /> */
-export function FormInput({ label, error, className, required, ...rest }: Shared & ComponentProps<"input">) {
+export function FormInput({ label, error, optional, className, ...rest }: Shared & ComponentProps<"input">) {
   const id = useId();
   return (
-    <FieldShell id={id} label={label} required={required} error={error}>
+    <FieldShell id={id} label={label} optional={optional} error={error}>
       <input
         id={id}
-        className={cn("inp", className)}
+        className={cn(controlClass, className)}
         aria-invalid={!!error}
         aria-describedby={error ? `${id}-erro` : undefined}
         {...rest}
@@ -44,13 +50,13 @@ export function FormInput({ label, error, className, required, ...rest }: Shared
   );
 }
 
-export function FormTextarea({ label, error, className, required, ...rest }: Shared & ComponentProps<"textarea">) {
+export function FormTextarea({ label, error, optional, className, ...rest }: Shared & ComponentProps<"textarea">) {
   const id = useId();
   return (
-    <FieldShell id={id} label={label} required={required} error={error}>
+    <FieldShell id={id} label={label} optional={optional} error={error}>
       <textarea
         id={id}
-        className={cn("inp", className)}
+        className={cn(controlClass, "resize-y", className)}
         aria-invalid={!!error}
         aria-describedby={error ? `${id}-erro` : undefined}
         {...rest}
@@ -59,13 +65,13 @@ export function FormTextarea({ label, error, className, required, ...rest }: Sha
   );
 }
 
-export function FormSelect({ label, error, className, required, children, ...rest }: Shared & ComponentProps<"select">) {
+export function FormSelect({ label, error, optional, className, children, ...rest }: Shared & ComponentProps<"select">) {
   const id = useId();
   return (
-    <FieldShell id={id} label={label} required={required} error={error}>
+    <FieldShell id={id} label={label} optional={optional} error={error}>
       <select
         id={id}
-        className={cn("inp", className)}
+        className={cn(controlClass, className)}
         aria-invalid={!!error}
         aria-describedby={error ? `${id}-erro` : undefined}
         {...rest}

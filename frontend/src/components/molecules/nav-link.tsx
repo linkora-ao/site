@@ -5,20 +5,14 @@ import { cn } from "@lib/cn";
 
 type NavLinkProps = {
   to: AppPath;
-  hash?: string;
   children: ReactNode;
   className?: string;
 };
 
-/** Link do header (sublinhado amber no hover e na página atual). */
-export function NavLink({ to, hash, children, className }: NavLinkProps) {
+/** Link do header (sublinhado vermelho no hover e na página atual). */
+export function NavLink({ to, children, className }: NavLinkProps) {
   return (
-    <Link
-      to={to}
-      hash={hash}
-      activeOptions={{ exact: to === "/", includeHash: true }}
-      className={cn("nav-link focus-ring", className)}
-    >
+    <Link to={to} className={cn("nav-link focus-ring", className)}>
       {children}
     </Link>
   );

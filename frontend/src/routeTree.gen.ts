@@ -10,21 +10,17 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as BoveRouteImport } from './routes/bove'
 import { Route as ContactoRouteImport } from './routes/contacto'
-import { Route as ProdutosRouteImport } from './routes/produtos'
+import { Route as MetodoRouteImport } from './routes/metodo'
+import { Route as PorqueNosRouteImport } from './routes/porque-nos'
+import { Route as PrivacidadeRouteImport } from './routes/privacidade'
+import { Route as ServicosRouteImport } from './routes/servicos'
 import { Route as SobreRouteImport } from './routes/sobre'
-import { Route as ServicosIndexRouteImport } from './routes/servicos.index'
-import { Route as ServicosSlugRouteImport } from './routes/servicos.$slug'
+import { Route as TermosRouteImport } from './routes/termos'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BoveRoute = BoveRouteImport.update({
-  id: '/bove',
-  path: '/bove',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactoRoute = ContactoRouteImport.update({
@@ -32,9 +28,24 @@ const ContactoRoute = ContactoRouteImport.update({
   path: '/contacto',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ProdutosRoute = ProdutosRouteImport.update({
-  id: '/produtos',
-  path: '/produtos',
+const MetodoRoute = MetodoRouteImport.update({
+  id: '/metodo',
+  path: '/metodo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PorqueNosRoute = PorqueNosRouteImport.update({
+  id: '/porque-nos',
+  path: '/porque-nos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacidadeRoute = PrivacidadeRouteImport.update({
+  id: '/privacidade',
+  path: '/privacidade',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicosRoute = ServicosRouteImport.update({
+  id: '/servicos',
+  path: '/servicos',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SobreRoute = SobreRouteImport.update({
@@ -42,83 +53,85 @@ const SobreRoute = SobreRouteImport.update({
   path: '/sobre',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ServicosIndexRoute = ServicosIndexRouteImport.update({
-  id: '/servicos/',
-  path: '/servicos/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ServicosSlugRoute = ServicosSlugRouteImport.update({
-  id: '/servicos/$slug',
-  path: '/servicos/$slug',
+const TermosRoute = TermosRouteImport.update({
+  id: '/termos',
+  path: '/termos',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/bove': typeof BoveRoute
   '/contacto': typeof ContactoRoute
-  '/produtos': typeof ProdutosRoute
+  '/metodo': typeof MetodoRoute
+  '/porque-nos': typeof PorqueNosRoute
+  '/privacidade': typeof PrivacidadeRoute
+  '/servicos': typeof ServicosRoute
   '/sobre': typeof SobreRoute
-  '/servicos/$slug': typeof ServicosSlugRoute
-  '/servicos/': typeof ServicosIndexRoute
+  '/termos': typeof TermosRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/bove': typeof BoveRoute
   '/contacto': typeof ContactoRoute
-  '/produtos': typeof ProdutosRoute
+  '/metodo': typeof MetodoRoute
+  '/porque-nos': typeof PorqueNosRoute
+  '/privacidade': typeof PrivacidadeRoute
+  '/servicos': typeof ServicosRoute
   '/sobre': typeof SobreRoute
-  '/servicos/$slug': typeof ServicosSlugRoute
-  '/servicos': typeof ServicosIndexRoute
+  '/termos': typeof TermosRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/bove': typeof BoveRoute
   '/contacto': typeof ContactoRoute
-  '/produtos': typeof ProdutosRoute
+  '/metodo': typeof MetodoRoute
+  '/porque-nos': typeof PorqueNosRoute
+  '/privacidade': typeof PrivacidadeRoute
+  '/servicos': typeof ServicosRoute
   '/sobre': typeof SobreRoute
-  '/servicos/$slug': typeof ServicosSlugRoute
-  '/servicos/': typeof ServicosIndexRoute
+  '/termos': typeof TermosRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/bove'
     | '/contacto'
-    | '/produtos'
+    | '/metodo'
+    | '/porque-nos'
+    | '/privacidade'
+    | '/servicos'
     | '/sobre'
-    | '/servicos/$slug'
-    | '/servicos/'
+    | '/termos'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/bove'
     | '/contacto'
-    | '/produtos'
-    | '/sobre'
-    | '/servicos/$slug'
+    | '/metodo'
+    | '/porque-nos'
+    | '/privacidade'
     | '/servicos'
+    | '/sobre'
+    | '/termos'
   id:
     | '__root__'
     | '/'
-    | '/bove'
     | '/contacto'
-    | '/produtos'
+    | '/metodo'
+    | '/porque-nos'
+    | '/privacidade'
+    | '/servicos'
     | '/sobre'
-    | '/servicos/$slug'
-    | '/servicos/'
+    | '/termos'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  BoveRoute: typeof BoveRoute
   ContactoRoute: typeof ContactoRoute
-  ProdutosRoute: typeof ProdutosRoute
+  MetodoRoute: typeof MetodoRoute
+  PorqueNosRoute: typeof PorqueNosRoute
+  PrivacidadeRoute: typeof PrivacidadeRoute
+  ServicosRoute: typeof ServicosRoute
   SobreRoute: typeof SobreRoute
-  ServicosSlugRoute: typeof ServicosSlugRoute
-  ServicosIndexRoute: typeof ServicosIndexRoute
+  TermosRoute: typeof TermosRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -130,13 +143,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/bove': {
-      id: '/bove'
-      path: '/bove'
-      fullPath: '/bove'
-      preLoaderRoute: typeof BoveRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/contacto': {
       id: '/contacto'
       path: '/contacto'
@@ -144,11 +150,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactoRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/produtos': {
-      id: '/produtos'
-      path: '/produtos'
-      fullPath: '/produtos'
-      preLoaderRoute: typeof ProdutosRouteImport
+    '/metodo': {
+      id: '/metodo'
+      path: '/metodo'
+      fullPath: '/metodo'
+      preLoaderRoute: typeof MetodoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/porque-nos': {
+      id: '/porque-nos'
+      path: '/porque-nos'
+      fullPath: '/porque-nos'
+      preLoaderRoute: typeof PorqueNosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacidade': {
+      id: '/privacidade'
+      path: '/privacidade'
+      fullPath: '/privacidade'
+      preLoaderRoute: typeof PrivacidadeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/servicos': {
+      id: '/servicos'
+      path: '/servicos'
+      fullPath: '/servicos'
+      preLoaderRoute: typeof ServicosRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sobre': {
@@ -158,18 +185,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SobreRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/servicos/': {
-      id: '/servicos/'
-      path: '/servicos'
-      fullPath: '/servicos/'
-      preLoaderRoute: typeof ServicosIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/servicos/$slug': {
-      id: '/servicos/$slug'
-      path: '/servicos/$slug'
-      fullPath: '/servicos/$slug'
-      preLoaderRoute: typeof ServicosSlugRouteImport
+    '/termos': {
+      id: '/termos'
+      path: '/termos'
+      fullPath: '/termos'
+      preLoaderRoute: typeof TermosRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -177,12 +197,13 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  BoveRoute: BoveRoute,
   ContactoRoute: ContactoRoute,
-  ProdutosRoute: ProdutosRoute,
+  MetodoRoute: MetodoRoute,
+  PorqueNosRoute: PorqueNosRoute,
+  PrivacidadeRoute: PrivacidadeRoute,
+  ServicosRoute: ServicosRoute,
   SobreRoute: SobreRoute,
-  ServicosSlugRoute: ServicosSlugRoute,
-  ServicosIndexRoute: ServicosIndexRoute,
+  TermosRoute: TermosRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

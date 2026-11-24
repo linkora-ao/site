@@ -1,53 +1,39 @@
 /*
- * Tokens de cor e raios da Linkora.
- * Única fonte de verdade das cores. Os componentes nunca usam hex:
- * usam as classes geradas a partir destes tokens (bg-primary, text-accent-dark, ...).
+ * Tokens de cor da Linkora (paleta do deck de marca, desenhada pelo Josiel).
+ * Única fonte de verdade das cores: os componentes nunca usam hex, usam as
+ * classes geradas a partir destes tokens (bg-primary, text-accent, ...).
  * A ponte para o Tailwind está em src/styles.css (@theme inline).
+ *
+ * Marca: preto, vermelho, cinza quente, cinza escuro, branco.
+ * Os tons de apoio (background-alt, border, hover do vermelho, erro, sucesso)
+ * não vêm do deck: foram definidos para completar a interface.
  */
 :root {
-  /* Superfícies (claro) */
-  --background: oklch(97% 0.011 85); /* cream */
-  --background-alt: oklch(94% 0.022 83); /* cream-2 */
-  --foreground: oklch(24% 0.058 257); /* navy */
-  --card: oklch(99% 0.006 85); /* paper */
-  --card-foreground: oklch(24% 0.058 257);
+  /* Superfícies */
+  --background: #ffffff;
+  --background-alt: #f5f3f0; /* branco quente: secções de contraste suave */
+  --foreground: #0b0b0b;
+  --card: #ffffff;
+  --card-foreground: #0b0b0b;
 
-  /* Marca: navy (autoridade) */
-  --primary: oklch(24% 0.058 257);
-  --primary-foreground: oklch(97% 0.011 85);
-  --primary-soft: oklch(28% 0.07 256); /* navy-2 */
-  --primary-strong: oklch(35% 0.083 258); /* navy-3 */
-  --primary-deep: oklch(20% 0.044 255); /* navy-d */
+  /* Marca: preto (secções escuras, texto) */
+  --primary: #0b0b0b;
+  --primary-foreground: #ffffff;
 
-  /* Marca: amber (acento) */
-  --accent: oklch(76% 0.137 75);
-  --accent-foreground: oklch(24% 0.058 257);
-  --accent-light: oklch(81% 0.133 77);
-  --accent-dark: oklch(61% 0.129 69); /* texto pequeno sobre fundo claro */
+  /* Marca: vermelho (acento único: botão principal, marcas, numeração) */
+  --accent: #e60a28;
+  --accent-foreground: #ffffff;
+  --accent-strong: #c20820; /* hover do botão vermelho */
 
-  /* Texto secundário e linhas */
-  --muted-foreground: oklch(46% 0.032 255);
-  --muted-on-primary: oklch(82% 0.028 260); /* texto secundário sobre navy */
-  --border: oklch(89% 0.029 83);
-  --border-strong: oklch(76% 0.03 82);
-  --border-on-primary: oklch(41% 0.087 258);
+  /* Marca: cinzentos */
+  --muted-foreground: #686868; /* cinza escuro: texto secundário sobre claro */
+  --muted-on-primary: #bdb5ae; /* cinza quente: texto secundário sobre preto */
+  --border: #e4dfda; /* filetes sobre claro */
+  --border-strong: #bdb5ae; /* contorno de campos */
+  --border-on-primary: #2a2a2a; /* filetes sobre preto */
 
-  /* Estados */
-  --destructive: oklch(50% 0.17 28);
-  --success: oklch(55% 0.12 155);
-  --ring: oklch(76% 0.137 75);
-
-  /* Forma */
-  --radius-sm: 0.375rem; /* botões, inputs */
-  --radius: 0.5rem; /* cards */
-  --radius-lg: 0.75rem; /* cartões grandes, mega-menu */
-  --radius-pill: 999px;
-
-  /* Sombras */
-  --shadow-card:
-    0 1px 1px color-mix(in oklab, var(--primary) 6%, transparent),
-    0 10px 24px -14px color-mix(in oklab, var(--primary) 22%, transparent);
-  --shadow-menu: 0 44px 64px -28px color-mix(in oklab, var(--primary-deep) 60%, transparent);
-  --shadow-edge: inset 0 -2px 0 color-mix(in oklab, var(--primary) 28%, transparent);
-  --shadow-edge-hover: inset 0 -4px 0 color-mix(in oklab, var(--primary) 28%, transparent);
+  /* Estados (distintos do vermelho da marca, para o erro não parecer acento) */
+  --destructive: #b54708;
+  --success: #1a7f4b;
+  --ring: #e60a28;
 }

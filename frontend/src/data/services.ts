@@ -1,62 +1,78 @@
-import type { IconName } from "@components/atoms/icon";
-
 /**
- * Catálogo de serviços. Alimenta /servicos, o mega-menu, o menu mobile, o footer,
- * as páginas /servicos/$slug e as opções do formulário de contacto (SERVICE_SLUGS).
- * Títulos e resumos vêm do desenho.
- *
- * TODO: acrescentar aqui os textos finais de cada página de serviço
- * (entregáveis, fases, caso de estudo, perguntas frequentes).
+ * Os seis serviços (Anexo A.4). Alimentam /servicos, a Home, o rodapé
+ * e as opções do formulário de contacto (SERVICE_SLUGS).
  */
 export const SERVICES = [
   {
-    slug: "web",
-    title: "Plataformas web",
-    summary: "Aplicações seguras, do painel ao portal do cliente.",
-    icon: "app-window",
+    slug: "websites",
+    title: "Websites e Aplicações Web",
+    description:
+      "Portais corporativos, páginas institucionais de alto impacto e aplicações web rápidas, responsivas e optimizadas para conversão.",
+    highlights: [
+      "Design responsivo para telemóveis, tablets e computadores",
+      "Optimização de SEO para Google e motores de busca",
+    ],
+  },
+  {
+    slug: "plataformas",
+    title: "Plataformas Digitais & Portais",
+    description:
+      "Sistemas empresariais em nuvem, portais de clientes, intranets e ecossistemas digitais para centralizar operações.",
+    highlights: [
+      "Autenticação segura e controlo de acessos por função",
+      "Dashboards analíticos com métricas em tempo real",
+    ],
+  },
+  {
+    slug: "consultoria",
+    title: "Consultoria Tecnológica",
+    description:
+      "Orientação estratégica para diagnóstico de sistemas, selecção de tecnologias e plano de aceleração digital corporativa.",
+    highlights: [
+      "Auditoria de segurança, código e arquitectura de TI",
+      "Mapeamento de maturidade digital e plano director",
+    ],
   },
   {
     slug: "medida",
-    title: "Software à medida",
-    summary: "Sistemas desenhados em torno dos teus processos.",
-    icon: "code-xml",
+    title: "Soluções de Software à Medida",
+    description:
+      "Desenvolvimento personalizado de raiz para desafios específicos do seu modelo de negócio que ferramentas prontas não resolvem.",
+    highlights: [
+      "Integração com sistemas legados e ERPs existentes",
+      "APIs RESTful e GraphQL robustas e documentadas",
+    ],
   },
   {
-    slug: "erp",
-    title: "ERP e gestão",
-    summary: "Stock, facturação e operações num só sistema.",
-    icon: "blocks",
+    slug: "automacao",
+    title: "Automação de Processos (BPA)",
+    description:
+      "Eliminação de tarefas manuais repetitivas, integração entre sistemas e fluxos de dados automáticos sem fricção.",
+    highlights: [
+      "Integração automatizada de WhatsApp e notificações",
+      "Sincronização bidireccional de bases de dados",
+    ],
   },
   {
-    slug: "crm",
-    title: "CRM e vendas",
-    summary: "Clientes e oportunidades com visibilidade.",
-    icon: "funnel",
+    slug: "suporte",
+    title: "Suporte e Manutenção Contínua",
+    description:
+      "Acompanhamento proactivo, actualizações de segurança, backups regulares e suporte técnico com SLA rigoroso.",
+    highlights: [
+      "Monitorização proactiva de disponibilidade 24/7",
+      "Actualizações preventivas e correcção de vulnerabilidades",
+    ],
   },
-  {
-    slug: "automacoes",
-    title: "Automações",
-    summary: "Integrações que eliminam tarefas repetitivas.",
-    icon: "zap",
-  },
-  {
-    slug: "websites",
-    title: "Websites institucionais",
-    summary: "Presença digital clara, que gera contactos.",
-    icon: "globe",
-  },
-] as const satisfies readonly {
-  slug: string;
-  title: string;
-  summary: string;
-  icon: IconName;
-}[];
+] as const;
 
 export type Service = (typeof SERVICES)[number];
 export type ServiceSlug = Service["slug"];
 
-export const SERVICE_SLUGS = SERVICES.map((s) => s.slug) as [ServiceSlug, ...ServiceSlug[]];
+export const SERVICE_SLUGS = SERVICES.map((service) => service.slug) as [ServiceSlug, ...ServiceSlug[]];
 
-export function getService(slug: string) {
-  return SERVICES.find((s) => s.slug === slug);
-}
+/** Chamada final do bloco de serviços (Anexo A.4). */
+export const CUSTOM_CTA = {
+  text: "Tem um desafio tecnológico específico ou inovador? Criamos soluções desenhadas de raiz para a sua realidade operacional.",
+  button: "Falar sobre projecto à medida",
+  service: "medida",
+} as const satisfies { text: string; button: string; service: ServiceSlug };

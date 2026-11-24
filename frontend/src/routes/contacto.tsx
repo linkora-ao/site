@@ -1,16 +1,17 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ContactPage } from "@src/pages/contact/contact-page";
+import { ContactPage } from "@src/components/pages/contact-page";
 import { contactSearchSchema } from "@shared/schemas/contact";
 import { seo } from "@lib/seo";
 
 export const Route = createFileRoute("/contacto")({
-  // /contacto?assunto=proposta&servico=erp (vem do botão "Pedir proposta" e dos pedidos rápidos)
+  // /contacto?servico=medida (vem dos botões dos serviços)
   validateSearch: contactSearchSchema,
   head: () =>
     seo({
       title: "Contacto",
+      description:
+        "Fale com a equipa da LINKORA. Resposta habitual em menos de 24 horas úteis.",
       path: "/contacto",
-      description: "Fala com a equipa da Linkora.",
     }),
   component: ContactPage,
 });
