@@ -19,9 +19,9 @@ export const SITE = {
   ogImage: "/og-image.png",
   email: "contacto@linkora.ao",
   emailSales: "comercial@linkora.ao",
-  phone: "+244 923 000 000", // TODO confirmar: parece um número de exemplo
-  address:
-    "Avenida 4 de Fevereiro, Edifício Kilamba, Talatona / Marginal de Luanda, Luanda, Angola",
+  mobile: "244949614129",
+  phone: "+244 949 614 129",
+  address: "Luanda, Angola",
   city: "Luanda, Angola",
   hours: "Segunda a Sexta, 08:30 – 17:30 (WAT)",
   response: "Habitualmente em menos de 24 horas úteis",
